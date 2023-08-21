@@ -61,7 +61,7 @@ finally:
         print('Terminating Program.')
         print('Thanks for Playing!')
         session_end = datetime.datetime.now()
-        session_time = session_end - session_start
-        print('Session Time:', int(session_time.total_seconds() / 60), 'minutes')
+        session_duration = session_end - session_start
+        print('Session Time:', int(session_duration.total_seconds() / 60), 'minutes')
         time.sleep(3)
         

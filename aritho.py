@@ -3,6 +3,7 @@ import os
 import time
 import datetime
 
+os.system('cls')
 session_start = datetime.datetime.now()
 print('Choose difficulty:')
 print('1: Vanilla')
@@ -17,10 +18,17 @@ print('9: Insane')
 print('10: Legendary')
 diff = int(input())
 num_limit = 10 ** diff
+is_timed = input('Do you want to pre-set a session time limit? (y/n): ')
+session_time_limit = 600
+if (is_timed == 'y'):
+    is_timed = True
+    session_time_limit = int(input('Enter session time limit (in minutes): '))
+
 score = 0
 resptimes = []
 total_attempts = 0
 os.system('cls')
+totresptime = 0
 try: # If an error occurs program should show results before quitting. 
     while True:
         num1 = random.choice(range(num_limit))
@@ -33,7 +41,11 @@ try: # If an error occurs program should show results before quitting.
         response_time = after_response - before_response
         if answer == -1:
             break
+        if (is_timed and (totresptime + response_time.total_seconds()) / 60 >= session_time_limit):
+            print('Time Up!')
+            break
         resptimes.append(response_time.total_seconds())
+        totresptime += response_time.total_seconds()
         if answer == (num1 + num2):
             print ('Correct!')
             score += 1
@@ -42,14 +54,12 @@ try: # If an error occurs program should show results before quitting.
         print('Response Time:', round(response_time.total_seconds(), 2), end='')
         print('s')
         total_attempts += 1
-        time.sleep(1.5)
+        input('Press Enter to continue')
         os.system('cls')
 finally:
-    totresptime = 0
-    for resptime in resptimes:
-        totresptime += resptime
     resptimes.sort() # Sorted to find median of data
     print('Total                : ', total_attempts)
+    print('Score                : ', score)
     try:
         print('Accuracy             :', round(score * 100 / total_attempts, 1), end='')
         print('%')

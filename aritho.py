@@ -51,6 +51,7 @@ try: # If an error occurs program should show results before quitting.
             score += 1
         else:
             print('Wrong!')
+            print('Answer:', num1 + num2)
         print('Response Time:', round(response_time.total_seconds(), 2), end='')
         print('s')
         total_attempts += 1

@@ -16,6 +16,7 @@ print('7: World Class')
 print('8: World Champion')
 print('9: Insane')
 print('10: Legendary')
+print('15: God Mode')
 diff = int(input())
 num_limit = 10 ** diff
 is_timed = input('Do you want to pre-set a session time limit? (y/n): ')

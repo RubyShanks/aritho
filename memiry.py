@@ -3,6 +3,8 @@ import os
 import time
 import datetime
 
+os.system('cls')
+
 session_start = datetime.datetime.now()
 
 nums = range(10) # Matrix elements 0-
